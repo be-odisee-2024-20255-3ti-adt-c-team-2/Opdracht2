@@ -1,6 +1,8 @@
-package org.example.bestelling;
+package org.example.o;
 
-import org.example.autos.Autosoort;
+import org.example.domein.Autosoort;
+import org.example.domein.Bestelling;
+import org.example.domein.Levering;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

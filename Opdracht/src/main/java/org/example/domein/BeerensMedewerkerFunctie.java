@@ -1,4 +1,4 @@
-package org.example.personeel;
+package org.example.domein;
 
 /**
  * Enum die de verschillende functies van een Beerens medewerker vertegenwoordigt.

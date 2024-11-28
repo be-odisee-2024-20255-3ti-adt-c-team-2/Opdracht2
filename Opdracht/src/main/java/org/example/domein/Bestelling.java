@@ -1,7 +1,4 @@
-package org.example.bestelling;
-
-import org.example.autos.Autosoort;
-import org.example.personeel.Factuur;
+package org.example.domein;
 
 import java.util.Calendar;
 import java.text.ParseException;

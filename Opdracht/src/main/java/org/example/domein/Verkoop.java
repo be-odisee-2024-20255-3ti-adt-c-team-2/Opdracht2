@@ -1,8 +1,4 @@
-package org.example.verkoop;
-
-import org.example.autos.Autosoort;
-import org.example.personeel.BeerensMedewerker;
-import org.example.personeel.Factuur;
+package org.example.domein;
 
 import java.util.Date;
 import java.util.UUID;

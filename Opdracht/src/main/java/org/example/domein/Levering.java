@@ -1,4 +1,4 @@
-package org.example.bestelling;
+package org.example.domein;
 
 import java.util.Date;
 import java.util.UUID;

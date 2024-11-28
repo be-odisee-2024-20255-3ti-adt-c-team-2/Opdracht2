@@ -1,10 +1,8 @@
 package org.example;
 
-import org.example.autos.Autosoort;
-import org.example.bestelling.Bestelling;
-import org.example.personeel.Factuur;
-
-import java.util.Date;
+import org.example.domein.Autosoort;
+import org.example.domein.Bestelling;
+import org.example.domein.Factuur;
 
 // Press ⇧ twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.

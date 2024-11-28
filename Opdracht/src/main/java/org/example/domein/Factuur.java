@@ -1,4 +1,4 @@
-package org.example.personeel;
+package org.example.domein;
 
 import java.util.UUID;
 

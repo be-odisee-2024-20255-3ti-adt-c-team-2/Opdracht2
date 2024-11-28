@@ -1,6 +1,4 @@
-package org.example.autos;
-
-import org.example.bestelling.Bestelling;
+package org.example.domein;
 
 import java.util.UUID;
 

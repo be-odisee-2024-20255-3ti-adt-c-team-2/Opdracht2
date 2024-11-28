@@ -1,6 +1,5 @@
-package org.example.autos;
+package org.example.domein;
 
-import org.example.bestelling.Bestelling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
