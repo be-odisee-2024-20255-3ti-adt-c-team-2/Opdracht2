@@ -79,7 +79,7 @@ public class AnalyseMarktvraag {
      *
      * @return de unieke ID van de marktanalysevraag
      */
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 }
