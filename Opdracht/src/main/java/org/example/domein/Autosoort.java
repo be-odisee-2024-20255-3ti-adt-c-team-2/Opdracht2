@@ -1,19 +1,30 @@
 package org.example.domein;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.UUID;
 
+@Data
+@Entity
 /**
  * Vertegenwoordigt een type auto (Autosoort) met details over de voorraadstatus,
  * marktanalyse en bestelmogelijkheden.
  */
 public class Autosoort {
-    private String id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String status;
     private String naam;
     private String merk;
     private int huidigVoorraadniveau;
     private int minimumpeiler;
     private int maximumpeiler;
+    @ManyToOne
+    @JoinColumn(name = "marktvraag_id")
     private AnalyseMarktvraag marktvraag;
 
     /**
@@ -26,13 +37,16 @@ public class Autosoort {
      * @param maximumpeiler       de maximale voorraadgrens
      */
     public Autosoort(String naam, String merk, int huidigVoorraadniveau, int minimumpeiler, int maximumpeiler) {
-        this.id = UUID.randomUUID().toString();
         this.naam = naam;
         this.merk = merk;
         this.huidigVoorraadniveau = huidigVoorraadniveau;
         this.minimumpeiler = minimumpeiler;
         this.maximumpeiler = maximumpeiler;
         this.status = "Niet in bestelling";
+    }
+
+    public Autosoort() {
+
     }
 
     /**
@@ -70,8 +84,6 @@ public class Autosoort {
     public void bestellingAfgerond() {
         this.status = "Niet in bestelling";
     }
-<<<<<<< Updated upstream
-=======
 
     /**
      * Geeft het huidige voorraadniveau van dit autotype terug.
@@ -108,6 +120,4 @@ public class Autosoort {
     public void updateVoorraad(int nieuweVoorraad) {
         this.huidigVoorraadniveau = nieuweVoorraad;
     }
-
->>>>>>> Stashed changes
 }

@@ -1,13 +1,26 @@
 package org.example.domein;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Data
+@Entity
 /**
  * Vertegenwoordigt een marktanalysevraag met details zoals status, datum en beschrijving.
  */
 public class AnalyseMarktvraag {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String status;
     private Date datum;
     private String beschrijving;
@@ -19,10 +32,13 @@ public class AnalyseMarktvraag {
      * @param beschrijving de beschrijving van de analysevraag
      */
     public AnalyseMarktvraag(Date datum, String beschrijving) {
-        this.id = Integer.parseInt(UUID.randomUUID().toString());  // Assign a unique identifier
         this.status = "Actueel";
         this.datum = datum;
         this.beschrijving = beschrijving;
+    }
+
+    public AnalyseMarktvraag() {
+
     }
 
     /**
@@ -31,9 +47,6 @@ public class AnalyseMarktvraag {
     public void vervang() {
         this.status = "Vervangen";
     }
-<<<<<<< Updated upstream
-=======
-
     /**
      * Geeft de huidige status van de marktanalysevraag terug.
      *
@@ -69,5 +82,4 @@ public class AnalyseMarktvraag {
     public int getId() {
         return this.id;
     }
->>>>>>> Stashed changes
 }
