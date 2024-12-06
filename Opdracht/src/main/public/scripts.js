@@ -1,4 +1,4 @@
-const BASE_URL_API= "http://localhost:8000/api/v1/persons";
+const BASE_URL_API= "http://localhost:8000/api/v1/autosoorten";
 
 const app = new Vue({
     el: '#main',
@@ -8,12 +8,14 @@ const app = new Vue({
         responseAvailable: false,
         responseAvailableCreation: false,
         responseAvailableSearch: false,
-        personData: {
+        autosoortData: {
             id: 0,
-            firstName: "de voornaam",
-            lastName: "de familienaam",
-            emailaddress: "email@adres.com",
-            emailaddressToBeFound: "email@adres.com"
+            naam: "naam",
+            merk: "merk",
+            huidigVoorraadniveau: "1",
+            minimumpeiler: "1",
+            maximumpeiler: "10",
+            naamToBeFound: "naam"
         }
     },
     methods: {
@@ -53,7 +55,7 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                "body": JSON.stringify(this.personData),
+                "body": JSON.stringify(this.autosoortData),
             })
                 .then(response => {
                     if(response.ok){
@@ -75,7 +77,7 @@ const app = new Vue({
             this.responseAvailableCreation = false;
             this.responseAvailableSearch = false
 
-            fetch(BASE_URL_API+'/'+this.personData.emailaddressToBeFound, {
+            fetch(BASE_URL_API+'/'+this.autosoortData.naamToBeFound, {
                 "method": "GET",
                 "headers": {
                 }
@@ -95,7 +97,7 @@ const app = new Vue({
                     console.log(err);
                 });
         },
-        deleteAllPersons() {
+        deleteAllAutosoorten() {
             this.responseAvailable = false;
             this.responseAvailableCreation = false;
             this.responseAvailableSearch = false
