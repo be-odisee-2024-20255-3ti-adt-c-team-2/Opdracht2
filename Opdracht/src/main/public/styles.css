@@ -93,3 +93,60 @@ ul#v-for-object li {
         gap: 1.5em;
     }
 }
+
+
+#webfront {
+    text-align: center;
+    margin-top: 10%;
+    font-family: 'Arial', sans-serif;
+    background: #fff;
+    padding: 2em;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin: 10% auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#webfront h1 {
+    color: #333;
+}
+
+#webfront button {
+    background-color: #d6b000;
+    color: #fff;
+    border: none;
+    padding: 0.8em 1.5em;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#webfront button:hover {
+    background-color: #b89400;
+}
+
+#back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #d6b000;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#back-button:hover {
+    background-color: #b89400;
+    transform: scale(1.05);
+}
+
+#back-button:active {
+    transform: scale(0.95);
+}
