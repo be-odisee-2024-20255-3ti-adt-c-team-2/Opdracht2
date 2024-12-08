@@ -6,12 +6,23 @@ import java.util.UUID;
 /**
  * Vertegenwoordigt een verkooptransactie met details zoals status, verkoopdatum, auto soort, factuur en verkoper.
  */
+@Data
+@Entity
 public class Verkoop {
-    private int id;
+    @id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String status;
+    @Temporal(TemporalType.DATE)
     private Date verkoopDatum;
+    @ManyToOne
+    @JoinColumn(name = "autosoort_id")
     private Autosoort autosoort;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "factuur_id", referencedColumnName = "id")
     private Factuur factuur;
+    @ManyToOne
+    @JoinColumn(name = "verkoper_id")
     private BeerensMedewerker verkoper;
 
     /**
