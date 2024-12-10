@@ -1,5 +1,8 @@
 package org.example.domein;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -9,7 +12,7 @@ import java.util.UUID;
 @Data
 @Entity
 public class Verkoop {
-    @id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String status;
@@ -43,6 +46,10 @@ public class Verkoop {
         this.verkoper = verkoper;
     }
 
+    public Verkoop() {
+
+    }
+
     /**
      * Annuleert de verkoop door de status te wijzigen naar "Geannuleerd".
      */
@@ -62,7 +69,7 @@ public class Verkoop {
      *
      * @return de unieke ID van de verkoop
      */
-    public int getId() {
+    public long getId() {
         return id;
     }
 

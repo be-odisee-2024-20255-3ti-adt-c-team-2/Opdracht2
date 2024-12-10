@@ -64,7 +64,6 @@ public class AutosoortController {
     @RequestMapping(value={"/api/v1/autosoorten"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePersons(){
-
         autosoortService.deleteAllAutosoorts();
     }
 }
