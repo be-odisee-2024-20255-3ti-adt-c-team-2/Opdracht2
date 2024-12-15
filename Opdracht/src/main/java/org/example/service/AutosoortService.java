@@ -1,24 +1,17 @@
 package org.example.service;
 
-import org.example.domein.Autosoort;
-
 import java.util.List;
 
 public interface AutosoortService {
+    long addAutosoort(String naam, String merk, int huidigeVoorraadniveau, int minimumpeiler, int maximumpeiler);
 
-    // Autosoorten
-    List<Autosoort> findAllAutosoorten();
-    void saveAutosoort(Autosoort autosoort);
-    Autosoort findAutosoortById(Long id);
-    Autosoort saveAutosoort(String merk, String model);
+    int countKnownAutosoorten();
 
-    List<Autosoort> getListOfAutosoorts();
+    void forgetKnownAutosoorten();
 
-    public String searchAutosoortByNaam(String naam);
+    List<String> showListOfAutosoorten();
 
-    Autosoort getAutosoortByNaam(String naam);
+    String searchAutosoortById(long id);
 
-    void deleteAllAutosoorts();
-
-    long addAutosoort(String naam, String merk, int huidigVoorraadniveau, int minimumpeiler, int maximumpeiler);
+    String searchAutosoortByNameAndBrand(String naamMerk);
 }
