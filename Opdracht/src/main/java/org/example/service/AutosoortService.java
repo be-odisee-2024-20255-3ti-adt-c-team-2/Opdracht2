@@ -8,9 +8,8 @@ public interface AutosoortService {
 
     // Autosoorten
     List<Autosoort> findAllAutosoorten();
+
     void saveAutosoort(Autosoort autosoort);
-    Autosoort findAutosoortById(Long id);
-    Autosoort saveAutosoort(String merk, String model);
 
     List<Autosoort> getListOfAutosoorts();
 
@@ -20,5 +19,17 @@ public interface AutosoortService {
 
     void deleteAllAutosoorts();
 
-    long addAutosoort(String naam, String merk, int huidigVoorraadniveau, int minimumpeiler, int maximumpeiler);
+    long addAutosoortD(String naam, String merk, int huidigVoorraadniveau, int minimumpeiler, int maximumpeiler);
+    long addAutosoortM(String naam, String merk, int huidigeVoorraadniveau, int minimumpeiler, int maximumpeiler);
+
+
+    int countKnownAutosoorten();
+
+    void forgetKnownAutosoorten();
+
+    List<String> showListOfAutosoorten();
+
+    String searchAutosoortById(long id);
+
+    String searchAutosoortByNameAndBrand(String naamMerk);
 }

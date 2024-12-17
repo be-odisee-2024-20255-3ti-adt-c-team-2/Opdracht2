@@ -15,7 +15,7 @@ public class Autosoort {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long autosoortId;
 
     private String status;
     private String naam;
@@ -23,8 +23,7 @@ public class Autosoort {
     private int huidigVoorraadniveau;
     private int minimumpeiler;
     private int maximumpeiler;
-    @ManyToOne
-    @JoinColumn(name = "marktvraag_id")
+    @OneToOne
     private AnalyseMarktvraag marktvraag;
 
     /**
@@ -77,6 +76,13 @@ public class Autosoort {
         return new Bestelling(this, hoeveelheid);
     }
 
+    public long getAutosoortId() {
+        return autosoortId;
+    }
+
+    public void setAutosoortId(long autosoortId) {
+        this.autosoortId = autosoortId;
+    }
 
     /**
      * Merkt de huidige bestelling als afgerond.
@@ -119,5 +125,9 @@ public class Autosoort {
      */
     public void updateVoorraad(int nieuweVoorraad) {
         this.huidigVoorraadniveau = nieuweVoorraad;
+    }
+
+    public Long getId(){
+        return autosoortId;
     }
 }
