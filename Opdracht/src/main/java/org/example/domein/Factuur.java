@@ -1,12 +1,22 @@
 package org.example.domein;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.UUID;
 
+@Entity
 /**
  * Vertegenwoordigt een factuur met details over de transactie.
  */
 public class Factuur {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long factuurId;
+
     private String details;
 
     /**
@@ -15,8 +25,11 @@ public class Factuur {
      * @param details de details van de factuur
      */
     public Factuur(String details) {
-        this.id = Integer.parseInt(UUID.randomUUID().toString());
         this.details = details;
+    }
+
+    public Factuur(){
+
     }
 
     /**
@@ -33,7 +46,12 @@ public class Factuur {
      *
      * @return de unieke ID van de factuur
      */
-    public int getId() {
-        return id;
+
+    public void setFactuurId(Long factuurId) {
+        this.factuurId = factuurId;
+    }
+
+    public Long getFactuurId() {
+        return factuurId;
     }
 }
