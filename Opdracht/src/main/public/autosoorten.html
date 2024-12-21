@@ -50,53 +50,6 @@
             </div>
         </div>
     </div>
-    <div id="">
-        <!-- Facturen Beheer -->
-        <div class="kolom">
-            <h1>Facturen</h1>
-            <button type="button" v-on:click="fetchFacturen">Haal alle facturen op</button>
-            <ul v-if="responseFacturen" class="result">
-                <li v-for="factuur in resultFacturen">
-                    ID: {{factuur.id}} -- Nummer: {{factuur.nummer}}
-                </li>
-            </ul>
-            <button type="button" v-on:click="deleteFacturen">Verwijder alle facturen</button>
-
-            <h2>Factuur toevoegen</h2>
-            Nummer: <input type="text" v-model="factuurData.nummer" /><br/>
-            <button v-on:click="addFactuur">Voeg factuur toe</button>
-        </div>
-
-        <!-- Medewerkers Beheer -->
-        <div class="kolom">
-            <h1>Medewerkers</h1>
-            <button type="button" v-on:click="fetchMedewerkers">Haal alle medewerkers op</button>
-            <ul v-if="responseMedewerkers" class="result">
-                <li v-for="medewerker in resultMedewerkers">
-                    ID: {{medewerker.id}} -- {{medewerker.voornaam}} {{medewerker.achternaam}} ({{medewerker.functie}})
-                </li>
-            </ul>
-            <button type="button" v-on:click="deleteMedewerkers">Verwijder alle medewerkers</button>
-
-            <h2>Medewerker toevoegen</h2>
-            Voornaam: <input type="text" v-model="medewerkerData.voornaam" /><br/>
-            Achternaam: <input type="text" v-model="medewerkerData.achternaam" /><br/>
-            Email: <input type="text" v-model="medewerkerData.email" /><br/>
-            Telefoonnummer: <input type="text" v-model="medewerkerData.telefoonnummer" /><br/>
-            Functie: <input type="text" v-model="medewerkerData.functie" /><br/>
-            <button v-on:click="addMedewerker">Voeg medewerker toe</button>
-        </div>
-
-        <!-- Verkopen Beheer -->
-        <div class="kolom">
-            <h1>Verkopen</h1>
-            <h2>Verkoop toevoegen</h2>
-            Autosoort ID: <input type="text" v-model="verkoopData.autosoortId" /><br/>
-            Factuur ID: <input type="text" v-model="verkoopData.factuurId" /><br/>
-            Medewerker ID: <input type="text" v-model="verkoopData.medewerkerId" /><br/>
-            <button v-on:click="addVerkoop">Voeg verkoop toe</button>
-        </div>
-    </div>
 </div>
 
 </body>
