@@ -1,17 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webfront</title>
-  <link href="styles.css" rel="stylesheet">
+  <title>Bekende Autosoorten</title>
+  <link href = "styles.css" rel = "stylesheet" />
 </head>
 <body>
-<div id="webfront">
-  <h1>Welkom op de Webfront</h1>
-  <p>Klik hieronder om verder te navigeren:</p>
-  <button onclick="navigateTo('autosoorten.html')">Ga naar autosoorten pagina</button>
+<div id="main">
+  <div class="kolom">
+    <h1>Gekende autosoorten</h1>
+    <button type = "button" id = "get-autosoorts" v-on:click="fetchAPIData">Haal de autosoorten op</button>
+    <div v-if = "responseAvailable == true" id="bekende_autosoorten">
+      <ul id="v-for-object" class="result">
+        <li v-for="autosoort in result">
+          id: {{autosoort.id}} -- {{autosoort.naam}} {{autosoort.merk}} -- Voorraad:{{autosoort.huidigVoorraadniveau}} <br>
+          minimum: {{autosoort.minimumpeiler}} -- maximum: {{autosoort.maximumpeiler}}
+        </li>
+      </ul>
+    </div><br/><br/>
+    <button type = "button" id = "delete-autosoorts" v-on:click="deleteAllAutosoorten">Verwijder de autosoorten</button>
+  </div>
+  <div class="kolom">
+    <h1>Autosoort toevoegen</h1>
+    <div id="mainform">
+      Naam: <input type="text" id="naam" name="naam"
+                   v-model="autosoortData.naam" /> <br/>
+      Merk: <input type="text" id="merk" name="merk"
+                   v-model="autosoortData.merk" /> <br/>
+      Huidigevoorraad: <input type="text" id="voorraad" name="voorraad"
+                              v-model="autosoortData.huidigevoorraad" /> <br/>
+      Minimumpeiler: <input type="text" id="min" name="min"
+                            v-model="autosoortData.minimumpeiler" /> <br/>
+      Maximumpeiler: <input type="text" id="max" name="max"
+                            v-model="autosoortData.maximumpeiler" /> <br/><br/>
+      <button type = "button" id = "add-autosoort" v-on:click="submitForm">Voeg autosoort toe</button>
+      <div v-if = "responseAvailableCreation == true" class="result" id="resultaat_toevoeging">
+        Autosoort gecreëerd met id {{result.id}}
+      </div>
+    </div>
+  </div>
+  <div class="kolom">
+    <h1>Autosoort opzoeken</h1>
+    <div id="searchform">
+      Naam: <input type="text" id="naamToBeFound" name="naam2"
+                   v-model="autosoortData.naamToBeFound" /> <br/><br/>
+      <button type = "button" id = "search-autosoort" v-on:click="searchForm">Zoek autosoort</button>
+      <div v-if = "responseAvailableSearch == true" class="result">
+        <h3>Gevonden: {{result.naam}} {{result.merk}}</h3>
+      </div>
+    </div>
+  </div>
 </div>
-<script src = "scripts.js"></script>
 </body>
+
+
+<!-- Vue and Custom JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src = "scripts.js"></script>
 </html>
