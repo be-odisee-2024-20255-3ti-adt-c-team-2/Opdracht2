@@ -2,13 +2,16 @@ package org.example.domein;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Vertegenwoordigt een verkooptransactie met details zoals status, verkoopdatum, auto soort, factuur en verkoper.
  */
+@Getter
+@Setter
 @Data
 @Entity
 public class Verkoop {
@@ -18,14 +21,13 @@ public class Verkoop {
     private String status;
     @Temporal(TemporalType.DATE)
     private Date verkoopDatum;
-    @ManyToOne
-    @JoinColumn(name = "autosoort_id")
+    @OneToOne
     private Autosoort autosoort;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "factuur_id", referencedColumnName = "id")
     private Factuur factuur;
-    @ManyToOne
-    @JoinColumn(name = "verkoper_id")
+
+    @OneToOne
     private BeerensMedewerker verkoper;
 
     /**
@@ -38,7 +40,6 @@ public class Verkoop {
      * @param verkoper     de medewerker die de verkoop heeft uitgevoerd
      */
     public Verkoop(String status, Date verkoopDatum, Autosoort autosoort, Factuur factuur, BeerensMedewerker verkoper) {
-        this.id = Integer.parseInt(UUID.randomUUID().toString());
         this.status = status;
         this.verkoopDatum = verkoopDatum;
         this.autosoort = autosoort;
@@ -46,10 +47,25 @@ public class Verkoop {
         this.verkoper = verkoper;
     }
 
-    public Verkoop() {
-
+    public Verkoop(Long id, Autosoort autosoort, Factuur factuur, BeerensMedewerker verkoper) {
+        this.id = id;
+        this.status = "Geregistreerd";
+        this.verkoopDatum = new Date();
+        this.autosoort = autosoort;
+        this.factuur = factuur;
+        this.verkoper = verkoper;
     }
 
+    public Verkoop(Long id, Factuur factuur, BeerensMedewerker verkoper) {
+        this.id = id;
+        this.status = "Geregistreerd";
+        this.verkoopDatum = new Date();
+        this.factuur = factuur;
+        this.verkoper = verkoper;
+    }
+    public Verkoop(){
+
+    }
     /**
      * Annuleert de verkoop door de status te wijzigen naar "Geannuleerd".
      */
@@ -64,14 +80,6 @@ public class Verkoop {
         this.status = "Geregistreerd";
     }
 
-    /**
-     * Geeft de unieke ID van de verkoop terug.
-     *
-     * @return de unieke ID van de verkoop
-     */
-    public long getId() {
-        return id;
-    }
 
     /**
      * Geeft de huidige status van de verkoop terug.

@@ -57,7 +57,7 @@ public class AutosoortController {
     public @ResponseBody Autosoort createAutosoort(@RequestBody Autosoort autosoort, HttpServletResponse response)
             throws BindException {
 
-        autosoort.setId(autosoortService.addAutosoort(autosoort.getNaam(), autosoort.getMerk(), autosoort.getHuidigVoorraadniveau(), autosoort.getMinimumpeiler(), autosoort.getMaximumpeiler()));
+        autosoort.setAutosoortId(autosoortService.addAutosoortD(autosoort.getNaam(), autosoort.getMerk(), autosoort.getHuidigVoorraadniveau(), autosoort.getMinimumpeiler(), autosoort.getMaximumpeiler()));
         return autosoort;
     }
 

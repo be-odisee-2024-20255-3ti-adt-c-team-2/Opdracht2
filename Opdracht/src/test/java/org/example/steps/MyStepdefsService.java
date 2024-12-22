@@ -5,6 +5,7 @@ import io.cucumber.java.nl.Als;
 import io.cucumber.java.nl.Dan;
 import io.cucumber.java.nl.En;
 import io.cucumber.java.nl.Gegeven;
+import org.example.domein.Autosoort;
 import org.example.service.AutosoortService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,7 +38,7 @@ public class MyStepdefsService {
         autosoortService.forgetKnownAutosoorten();
 
         for (Map<String, String> row : dataTable) {
-            autosoortService.addAutosoort(
+            autosoortService.addAutosoortM(
                     row.get("naam"),
                     row.get("merk"),
                     Integer.parseInt(row.get("huidigeVoorraadniveau")),
@@ -51,7 +52,7 @@ public class MyStepdefsService {
 
     @Als("de LM een autosoort toevoegt met naam {string}, merk {string}, huidig voorraadniveau {int}, minimumpeiler {int} en maximumpeiler {int}")
     public void deLMVoegtEenAutosoortToe(String naam, String merk, int voorraad, int min, int max) {
-        this.lastInsertedId = autosoortService.addAutosoort(naam, merk, voorraad, min, max);
+        this.lastInsertedId = autosoortService.addAutosoortM(naam, merk, voorraad, min, max);
     }
 
     @Dan("is er 1 bekende autosoort")

@@ -1,12 +1,19 @@
 package org.example.domein;
 
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+
+@Entity
 /**
  * Vertegenwoordigt een medewerker van Beerens met details zoals naam, contactinformatie en functie.
  */
 public class BeerensMedewerker {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long medewerkerId;
     private String status;
     private String voornaam;
     private String achternaam;
@@ -24,13 +31,16 @@ public class BeerensMedewerker {
      * @param functie        de functie van de medewerker
      */
     public BeerensMedewerker(String voornaam, String achternaam, String email, String telefoonnummer, BeerensMedewerkerFunctie functie) {
-        this.id = Integer.parseInt(UUID.randomUUID().toString());
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.email = email;
         this.telefoonnummer = telefoonnummer;
         this.functie = functie;
         this.status = "In dienst";
+    }
+
+    public BeerensMedewerker(){
+
     }
 
     /**
@@ -61,8 +71,8 @@ public class BeerensMedewerker {
      *
      * @return de unieke ID van de medewerker
      */
-    public int getId() {
-        return id;
+    public Long getMedewerkerId() {
+        return medewerkerId;
     }
 
     /**
@@ -108,5 +118,9 @@ public class BeerensMedewerker {
      */
     public BeerensMedewerkerFunctie getFunctie() {
         return functie;
+    }
+
+    public void setMedewerkerId(Long id) {
+        this.medewerkerId = id;
     }
 }
