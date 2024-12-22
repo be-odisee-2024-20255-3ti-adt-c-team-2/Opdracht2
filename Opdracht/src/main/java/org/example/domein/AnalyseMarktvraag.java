@@ -19,7 +19,7 @@ public class AnalyseMarktvraag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long marktvraagId;
 
     private String status;
     private Date datum;
@@ -80,6 +80,6 @@ public class AnalyseMarktvraag {
      * @return de unieke ID van de marktanalysevraag
      */
     public long getId() {
-        return this.id;
+        return this.marktvraagId;
     }
 }
