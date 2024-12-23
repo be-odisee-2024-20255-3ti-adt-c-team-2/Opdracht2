@@ -16,7 +16,7 @@ const app = new Vue({
             id: 0,
             naam: "naam",
             merk: "merk",
-            huidigVoorraadniveau: "1",
+            huidigVoorraadniveau: 1,
             minimumpeiler: "1",
             maximumpeiler: "10",
             naamToBeFound: "naam"
