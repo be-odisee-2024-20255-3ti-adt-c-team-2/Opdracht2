@@ -84,7 +84,6 @@ public class MyStepdefsAPI {
                         .isNotFound());
                 break;
             default:
-                // Er wordt een httpStatus verwacht die we nog niet voorzien hebben
                 assertThat(true).isFalse();
         }
     }
@@ -94,51 +93,50 @@ public class MyStepdefsAPI {
                 .returnResult(Autosoort.class)
                 .getResponseBody()
                 .blockFirst();
+        System.out.println("Returned Autosoort: " + this.returnedAutosoort); // Debug log
         assertThat(this.returnedAutosoort).isNotNull();
     }
+
     @Then("the {string}-attribute of the Autosoort object contains a nonzero number")
     public void the_attribute_of_the_autosoort_object_contains_a_nonzero_number(String string) {
         assertThat(this.returnedAutosoort.getId()).isNotEqualTo(0);
     }
     @Then("the {string}-attribute of the Autosoort object  contains {string}")
     public void the_attribute_of_the_autosoort_object_contains(String field, String value) throws NoSuchFieldException, IllegalAccessException {
-        // Hier moeten we reflection toepassen om de waarde van het attribuut field op te pikken
         java.lang.reflect.Field f = Autosoort.class.getDeclaredField(field);
-        f.setAccessible(true);  // omdat het veld "private" gedeclareerd staat
+        f.setAccessible(true);
         assertThat(f.get(returnedAutosoort)).isEqualTo(value);
     }
-    @When("the request sends DELETE")
-    public void the_request_sends_delete() {
-        this.responseSpec = webTestClient
-                .delete()
-                .uri(this.theUrl)
-                .exchange();
+
+    @Then("the {string} attribute of the Autosoort object is at least {int}")
+    public void the_attribute_of_the_autosoort_object_is_at_least(String attributeName, Integer minValue) throws NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field f = Autosoort.class.getDeclaredField(attributeName);
+        f.setAccessible(true);
+
+        // Null check added here
+        assertThat(this.returnedAutosoort).isNotNull();
+        Object value = f.get(returnedAutosoort);
+        assertThat(value).isNotNull();
+
+        int fieldValue = (int) value;
+        assertThat(fieldValue).isGreaterThanOrEqualTo(minValue);
     }
-    @Then("the response is empty")
-    public void the_response_is_empty() {
-        assertThat(this.responseSpec
-                .expectBody()
-                .isEmpty());
-    }
+
     @When("the following autosoorten are known")
     public void theFollowingAutosoortenAreKnown(DataTable autosoortenDatatable) {
 
-        // Verkrijg de dataTable als een lijst van Map-objecten
         List<Map<String, String>> dataTable = autosoortenDatatable.asMaps();
 
-        // Vertrek van 0 bekende personen - reeds geteste werkwijze
         webTestClient.delete().uri(this.theUrl).exchange();
 
-        // Overloop elke rij ... voeg de data toe
         for (Map<String, String> rowFromTable : dataTable) {
-            // Construeer een AutosoortData-object met de gegevens van één rij
             Autosoort autosoort = new Autosoort();
             for (Map.Entry<String, String> entry : rowFromTable.entrySet()) {
                 if (entry.getKey().equals("naam")) autosoort.setNaam(entry.getValue());
                 if (entry.getKey().equals("merk")) autosoort.setMerk(entry.getValue());
-                if (entry.getKey().equals("voorraad")) autosoort.setMerk(entry.getValue());
+                if (entry.getKey().equals("huidigVoorraadniveau"))
+                    autosoort.setHuidigVoorraadniveau(Integer.parseInt(entry.getValue()));
             }
-            // Gebruik de al geteste service methode om autosoort toe te voegen
             webTestClient
                     .post()
                     .uri(this.theUrl)
