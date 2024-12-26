@@ -136,6 +136,7 @@ public class MyStepdefsAPI {
             for (Map.Entry<String, String> entry : rowFromTable.entrySet()) {
                 if (entry.getKey().equals("naam")) autosoort.setNaam(entry.getValue());
                 if (entry.getKey().equals("merk")) autosoort.setMerk(entry.getValue());
+                if (entry.getKey().equals("voorraad")) autosoort.setMerk(entry.getValue());
             }
             // Gebruik de al geteste service methode om autosoort toe te voegen
             webTestClient

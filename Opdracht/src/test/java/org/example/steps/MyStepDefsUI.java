@@ -62,7 +62,7 @@ public class MyStepDefsUI {
     void insertAutosoort(String naam, String merk, String huidigVoorraadniveau, String minimumpeiler, String maximumpeiler) {
         this.addAutosoortPage.enterTextInField("naam" , naam);
         this.addAutosoortPage.enterTextInField("merk" , merk);
-        this.addAutosoortPage.enterTextInField("voorraad" , huidigVoorraadniveau);
+        this.addAutosoortPage.enterTextInField("huidigVoorraadniveau" , huidigVoorraadniveau);
         this.addAutosoortPage.enterTextInField("min" , minimumpeiler);
         this.addAutosoortPage.enterTextInField("max" , maximumpeiler);
         this.addAutosoortPage.submitForm();
