@@ -77,7 +77,7 @@ public class AutosoortServiceImpl implements AutosoortService{
 
     @Override
     public int countKnownAutosoorten() {
-        return autosoorten.size();
+        return (int) autosoortRepository.count();
     }
 
     @Override

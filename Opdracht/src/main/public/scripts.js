@@ -1,9 +1,5 @@
 const BASE_URL_API= "http://localhost:8000/api/v1/autosoorten";
 
-function navigateTo(page) {
-    window.location.href = page;
-}
-
 const app = new Vue({
     el: '#main',
 
