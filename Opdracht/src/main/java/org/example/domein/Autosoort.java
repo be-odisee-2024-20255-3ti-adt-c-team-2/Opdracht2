@@ -16,15 +16,11 @@ public class Autosoort {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long autosoortId;
-
-    private String status;
     private String naam;
     private String merk;
     private int huidigVoorraadniveau;
     private int minimumpeiler;
     private int maximumpeiler;
-    @OneToOne
-    private AnalyseMarktvraag marktvraag;
 
     /**
      * Maakt een instantie van Autosoort met de opgegeven details.
@@ -41,7 +37,6 @@ public class Autosoort {
         this.huidigVoorraadniveau = huidigVoorraadniveau;
         this.minimumpeiler = minimumpeiler;
         this.maximumpeiler = maximumpeiler;
-        this.status = "Niet in bestelling";
     }
 
     public Autosoort() {
@@ -57,38 +52,9 @@ public class Autosoort {
         huidigVoorraadniveau -= aantal;
     }
 
-    /**
-     * Voegt een marktanalysevraag toe die gerelateerd is aan dit autotype.
-     *
-     * @param beschrijving de beschrijving van de marktanalysevraag
-     */
-    public void voegAnalyseMarktvraagToe(String beschrijving) {
-        this.marktvraag = new AnalyseMarktvraag(new java.util.Date(), beschrijving);
-    }
-
-    /**
-     * Maakt een nieuwe bestelling voor dit autotype met de opgegeven hoeveelheid.
-     *
-     * @param hoeveelheid de hoeveelheid die besteld moet worden
-     * @return een nieuw Bestelling-object dat de bestelling vertegenwoordigt
-     */
-    public Bestelling voegBestellingToe(int hoeveelheid) {
-        return new Bestelling(this, hoeveelheid);
-    }
-
-    public long getAutosoortId() {
-        return autosoortId;
-    }
 
     public void setAutosoortId(long autosoortId) {
         this.autosoortId = autosoortId;
-    }
-
-    /**
-     * Merkt de huidige bestelling als afgerond.
-     */
-    public void bestellingAfgerond() {
-        this.status = "Niet in bestelling";
     }
 
     /**
@@ -109,14 +75,6 @@ public class Autosoort {
         return this.minimumpeiler;
     }
 
-    /**
-     * Geeft de marktanalysevraag terug die geassocieerd is met dit autotype.
-     *
-     * @return de marktanalysevraag
-     */
-    public AnalyseMarktvraag getMarktvraag() {
-        return this.marktvraag;
-    }
 
     /**
      * Past het huidige voorraadniveau aan met de opgegeven nieuwe voorraadwaarde.

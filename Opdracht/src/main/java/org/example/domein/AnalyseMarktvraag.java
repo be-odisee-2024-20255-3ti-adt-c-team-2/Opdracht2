@@ -10,15 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Data
-@Entity
 /**
  * Vertegenwoordigt een marktanalysevraag met details zoals status, datum en beschrijving.
  */
 public class AnalyseMarktvraag {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long marktvraagId;
 
     private String status;
