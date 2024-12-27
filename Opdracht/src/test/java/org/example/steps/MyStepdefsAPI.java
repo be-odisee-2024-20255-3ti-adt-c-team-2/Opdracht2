@@ -110,16 +110,20 @@ public class MyStepdefsAPI {
 
     @Then("the {string} attribute of the Autosoort object is at least {int}")
     public void the_attribute_of_the_autosoort_object_is_at_least(String attributeName, Integer minValue) throws NoSuchFieldException, IllegalAccessException {
-        java.lang.reflect.Field f = Autosoort.class.getDeclaredField(attributeName);
-        f.setAccessible(true);
+        assertThat(this.returnedAutosoorten).isNotNull(); // Ensure the list is not null
+        assertThat(this.returnedAutosoorten).isNotEmpty(); // Ensure the list has elements
 
-        // Null check added here
-        assertThat(this.returnedAutosoort).isNotNull();
-        Object value = f.get(returnedAutosoort);
-        assertThat(value).isNotNull();
+        for (Autosoort autosoort : this.returnedAutosoorten) {
+            assertThat(autosoort).isNotNull(); // Ensure the object is not null
+            java.lang.reflect.Field field = Autosoort.class.getDeclaredField(attributeName);
+            field.setAccessible(true);
 
-        int fieldValue = (int) value;
-        assertThat(fieldValue).isGreaterThanOrEqualTo(minValue);
+            Object value = field.get(autosoort);
+            assertThat(value).isNotNull(); // Ensure the field value is not null
+
+            int fieldValue = (int) value;
+            assertThat(fieldValue).isGreaterThanOrEqualTo(minValue); // Assert minimum value
+        }
     }
 
     @When("the following autosoorten are known")

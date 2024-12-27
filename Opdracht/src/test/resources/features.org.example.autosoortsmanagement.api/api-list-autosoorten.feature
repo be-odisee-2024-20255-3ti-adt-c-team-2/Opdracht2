@@ -7,7 +7,7 @@ Feature: List all known autosoorten via the API
     # The following request url is valid for DELETE-ing POST-ing the initial data too
     Given a request url "/api/v1/autosoorten"
     And the following autosoorten are known
-      | Naam     | Merk       | huidigVoorraadniveau       |
+      | naam     | merk       | huidigVoorraadniveau       |
       | Audi A8  | Audi       | 5              |
       | Tesla    | Tesla      | 2              |
       | test 3   | test       | 3              |
