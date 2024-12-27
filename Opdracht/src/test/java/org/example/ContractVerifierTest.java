@@ -3,6 +3,7 @@ package org.example;
 import org.example.BaseTestClass;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+import org.example.domein.Autosoort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import io.restassured.module.mockmvc.specification.MockMvcRequestSpecification;
@@ -39,5 +40,30 @@ public class ContractVerifierTest extends BaseTestClass {
 			assertThatJson(parsedJson).field("['minimumpeiler']").isEqualTo(1);
 			assertThatJson(parsedJson).field("['maximumpeiler']").isEqualTo(10);
 	}
+
+	@Test
+	public void validate_shouldFetchAutosoortByName() throws Exception {
+		// given:
+		MockMvcRequestSpecification request = given()
+				.header("Accept", "application/json");
+
+		// when:
+		ResponseOptions response = given().spec(request)
+				.get("/api/v1/autosoorten/Model U");
+
+		// then:
+		assertThat(response.statusCode()).isEqualTo(200);
+
+		// and:
+		DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
+		assertThatJson(parsedJson).field("['autosoortId']").isEqualTo(1);
+		assertThatJson(parsedJson).field("['naam']").isEqualTo("Model U");
+		assertThatJson(parsedJson).field("['merk']").isEqualTo("Tesla");
+		assertThatJson(parsedJson).field("['huidigVoorraadniveau']").isEqualTo(1);
+		assertThatJson(parsedJson).field("['minimumpeiler']").isEqualTo(1);
+		assertThatJson(parsedJson).field("['maximumpeiler']").isEqualTo(10);
+	}
+
+
 
 }
