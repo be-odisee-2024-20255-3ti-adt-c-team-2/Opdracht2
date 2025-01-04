@@ -25,21 +25,16 @@ public class MyStepdefsAPI {
     String theUrl = null;
     String theRequestData = null;
 
-    HttpStatus httpStatus;
-    HashMap theResponseData = null;
-    String theResponseJsonList;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private WebTestClient webTestClient;
 
     WebTestClient.ResponseSpec responseSpec;
-    WebTestClient.ListBodySpec<Autosoort> listBodySpec;
+
     Autosoort returnedAutosoort = null;
     List<Autosoort> returnedAutosoorten = null;
 
-    HttpHeaders headers;
-    HttpEntity requestHttpEntity;
 
     @Given("a request url {string}")
     public void aRequestUrl(String url) {
@@ -164,5 +159,20 @@ public class MyStepdefsAPI {
                 .collectList().block();
 
         assertThat(this.returnedAutosoorten.size()).isEqualTo(number);
+    }
+
+    @When("the request sends DELETE")
+    public void the_request_sends_delete() {
+        this.responseSpec = webTestClient
+                .delete()
+                .uri(this.theUrl)
+                .exchange();
+    }
+
+    @Then("the response is empty")
+    public void the_response_is_empty() {
+        assertThat(this.responseSpec
+                .expectBody()
+                .isEmpty());
     }
 }

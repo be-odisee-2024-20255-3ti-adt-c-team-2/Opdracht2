@@ -10,26 +10,26 @@ public class AutosoortTest {
 
     @BeforeEach
     void setUp() {
-        autosoort = new Autosoort("Model X", "Tesla", 50, 10, 100);
+        autosoort = new Autosoort("Model X", "Tesla", 7, 3, 10);
     }
 
     @Test
     void testConstructor() {
         assertEquals("Model X", autosoort.getNaam());
         assertEquals("Tesla", autosoort.getMerk());
-        assertEquals(50, autosoort.getHuidigVoorraadniveau());
-        assertEquals(10, autosoort.getMinimumpeiler());
-        assertEquals(100, autosoort.getMaximumpeiler());
+        assertEquals(7, autosoort.getHuidigVoorraadniveau());
+        assertEquals(3, autosoort.getMinimumpeiler());
+        assertEquals(10, autosoort.getMaximumpeiler());
         assertEquals("Niet in bestelling", autosoort.getStatus());
     }
 
     @Test
     void testIsVerkocht() {
-        autosoort.isVerkocht(10);
-        assertEquals(40, autosoort.getHuidigVoorraadniveau());
+        autosoort.isVerkocht(2);
+        assertEquals(5, autosoort.getHuidigVoorraadniveau());
 
-        autosoort.isVerkocht(5);
-        assertEquals(35, autosoort.getHuidigVoorraadniveau());
+        autosoort.isVerkocht(1);
+        assertEquals(4, autosoort.getHuidigVoorraadniveau());
     }
 
     @Test
@@ -51,10 +51,10 @@ public class AutosoortTest {
 
     @Test
     void testUpdateVoorraad() {
-        autosoort.updateVoorraad(70);
-        assertEquals(70, autosoort.getHuidigVoorraadniveau());
+        autosoort.updateVoorraad(8);
+        assertEquals(8, autosoort.getHuidigVoorraadniveau());
 
-        autosoort.updateVoorraad(30);
-        assertEquals(30, autosoort.getHuidigVoorraadniveau());
+        autosoort.updateVoorraad(6);
+        assertEquals(6, autosoort.getHuidigVoorraadniveau());
     }
 }
