@@ -1,9 +1,5 @@
 const BASE_URL_API= "http://localhost:8000/api/v1/autosoorten";
 
-function navigateTo(page) {
-    window.location.href = page;
-}
-
 const app = new Vue({
     el: '#main',
 
@@ -16,7 +12,7 @@ const app = new Vue({
             id: 0,
             naam: "naam",
             merk: "merk",
-            huidigVoorraadniveau: "1",
+            huidigVoorraadniveau: 1,
             minimumpeiler: "1",
             maximumpeiler: "10",
             naamToBeFound: "naam"

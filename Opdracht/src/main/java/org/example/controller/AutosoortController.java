@@ -9,12 +9,9 @@ import org.springframework.boot.context.properties.bind.BindException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
-import java.util.Random;
 @Controller
 @ResponseBody
 @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
@@ -57,14 +54,13 @@ public class AutosoortController {
     public @ResponseBody Autosoort createAutosoort(@RequestBody Autosoort autosoort, HttpServletResponse response)
             throws BindException {
 
-        autosoort.setId(autosoortService.addAutosoort(autosoort.getNaam(), autosoort.getMerk(), autosoort.getHuidigVoorraadniveau(), autosoort.getMinimumpeiler(), autosoort.getMaximumpeiler()));
+        autosoort.setAutosoortId(autosoortService.addAutosoortD(autosoort.getNaam(), autosoort.getMerk(), autosoort.getHuidigVoorraadniveau(), autosoort.getMinimumpeiler(), autosoort.getMaximumpeiler()));
         return autosoort;
     }
 
     @RequestMapping(value={"/api/v1/autosoorten"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePersons(){
-
         autosoortService.deleteAllAutosoorts();
     }
 }
