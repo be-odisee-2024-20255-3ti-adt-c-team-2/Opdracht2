@@ -29,31 +29,15 @@ public class MyStepDefsUI {
 
     @Before("@UI")
     public void setup() {
-        // voor het gemak zetten we de chromedriver in de root van het project
-        // indien path de backslashes in het path escapen
-        // chromedriver voor Linux, chromedriver.exe voor Windows 64bit
-        // zorg dat de juiste property in - en de andere uit commentaar staat
-        // wat er nu bijzit is voor Chrome version 107.0.5304.X
-        // HV niet meer nodig nu System.setProperty("webdriver.chrome.driver", "chromedriver");
-        // System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-
-        // Met de nieuwste versie van Selenium Chromedriver 111
-        // kwam er Java.io.IOException: Invalid Status code=403 text=Forbidden
-        // --remote-allow-origins=* bleek nodig
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-infobars");   // die infobars zijn vervelend
         options.addArguments("--remote-allow-origins=*"); // dit bleek nu nodig
-
         driver = new ChromeDriver(options);
-
-        // Volgende data setup blijkt in verschillende scenario's nodig en ze stoort niet in andere
         deleteAutosoortPage = new DeleteAutosoortPage(driver);
         deleteAutosoortPage.open();
         deleteAutosoortPage.clickButton();  // start van lege lijst
-
         addAutosoortPage = new AddAutosoortPage(driver);
         addAutosoortPage.open();
-
         insertAutosoort("Model X", "Tesla", "2", "1", "10");
         insertAutosoort("Model a8", "Audi", "1", "1", "5");
         insertAutosoort("Chin", "BYD", "2", "1", "3");
