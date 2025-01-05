@@ -10,7 +10,7 @@ Feature: Add a autosoort via the UI
     Given I am on the page where I can introduce a new autosoort
     When I enter "Model I" in the naam field
     And I enter "Tesla" in the merk field
-    And I enter "4" in the voorraad field
+    And I enter "4" in the huidigVoorraadniveau field
     And I enter "1" in the min field
     And I enter "20" in the max field
     And I click the Add autosoort button
