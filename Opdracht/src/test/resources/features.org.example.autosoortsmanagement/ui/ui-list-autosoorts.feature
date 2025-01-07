@@ -7,10 +7,10 @@ Feature: List all known autosoorts via the UI
   @UI
   Scenario: List all known autosoorts
     Given I am on the page where I can introduce a new autosoort
-    And 4 autosoorts were introduced
+    And 3 autosoorts were introduced
     And  I am on the page where I can find a autosoort
     Given I am on the page where I can list the known autosoorts
     When I click on the List Autosoorts button
-    Then I should see a text containing "Model X" and "GLE" and "Model a8"
+    Then I should see a text containing "Model X" and "Model a8" and "Chin"
 
 
