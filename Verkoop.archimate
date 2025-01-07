@@ -52,7 +52,9 @@
   </folder>
   <folder name="Motivation" id="id-8ffc79bdcc724798ab6c5bc7fa7cf87e" type="motivation"/>
   <folder name="Implementation &amp; Migration" id="id-aedcb5c0cd334d88b19880586ff8af78" type="implementation_migration"/>
-  <folder name="Other" id="id-00f8bcf8ae1844cf908c839ad576ab63" type="other"/>
+  <folder name="Other" id="id-00f8bcf8ae1844cf908c839ad576ab63" type="other">
+    <element xsi:type="archimate:Grouping" name="Grouping" id="id-f8d9e2f072b94a27b5e46f32ee7f6119"/>
+  </folder>
   <folder name="Relations" id="id-847dcb62812a4b08969e5647f72f0094" type="relations">
     <element xsi:type="archimate:RealizationRelationship" id="id-caeee581a771458fb283328063e67625" source="id-c5241af0a61447e390cc9a4b44e47a31" target="id-515aa342d72240c8954c386dfec8ee18"/>
     <element xsi:type="archimate:AssignmentRelationship" id="id-b91c4bc20339468dabd6ac15312dbe84" source="id-c5241af0a61447e390cc9a4b44e47a31" target="id-7598ec4fc6854fcfb10c043ee0334550"/>

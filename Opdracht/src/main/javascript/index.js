@@ -1,38 +1,39 @@
 const BASE_URL_API= "http://localhost:8000/api/v1/autosoorten";
 
-const app = new Vue({
-    el: '#main',
+import { createApp } from 'vue';
 
-    data: {
-        result: "",
-        responseAvailable: false,
-        responseAvailableCreation: false,
-        responseAvailableSearch: false,
-        autosoortData: {
-            id: 0,
-            naam: "naam",
-            merk: "merk",
-            huidigVoorraadniveau: "1",
-            minimumpeiler: "1",
-            maximumpeiler: "10",
-            naamToBeFound: "naam"
-        }
+const app = createApp({
+    data() {
+        return {
+            result: "",
+            responseAvailable: false,
+            responseAvailableCreation: false,
+            responseAvailableSearch: false,
+            autosoortData: {
+                id: 0,
+                naam: "naam",
+                merk: "merk",
+                huidigVoorraadniveau: "1",
+                minimumpeiler: "1",
+                maximumpeiler: "10",
+                naamToBeFound: "naam"
+            }
+        };
     },
     methods: {
-        fetchAPIData( ) {
+        fetchAPIData() {
             this.responseAvailable = false;
             this.responseAvailableCreation = false;
-            this.responseAvailableSearch = false
+            this.responseAvailableSearch = false;
 
             fetch(BASE_URL_API, {
                 "method": "GET",
-                "headers": {
-                }
+                "headers": {}
             })
                 .then(response => {
-                    if(response.ok){
-                        return response.json()
-                    } else{
+                    if (response.ok) {
+                        return response.json();
+                    } else {
                         alert("Server returned " + response.status + " : " + response.statusText);
                     }
                 })
@@ -44,10 +45,10 @@ const app = new Vue({
                     console.log(err);
                 });
         },
-        submitForm( ) {
+        submitForm() {
             this.responseAvailable = false;
             this.responseAvailableCreation = false;
-            this.responseAvailableSearch = false
+            this.responseAvailableSearch = false;
 
             fetch(BASE_URL_API, {
                 "method": "POST",
@@ -58,9 +59,9 @@ const app = new Vue({
                 "body": JSON.stringify(this.autosoortData),
             })
                 .then(response => {
-                    if(response.ok){
-                        return response.json()
-                    } else{
+                    if (response.ok) {
+                        return response.json();
+                    } else {
                         alert("Server returned " + response.status + " : " + response.statusText);
                     }
                 })
@@ -72,19 +73,18 @@ const app = new Vue({
                     console.log(err);
                 });
         },
-        searchForm( ) {
+        searchForm() {
             this.responseAvailable = false;
             this.responseAvailableCreation = false;
-            this.responseAvailableSearch = false
+            this.responseAvailableSearch = false;
 
-            fetch(BASE_URL_API+'/'+this.autosoortData.naamToBeFound, {
+            fetch(BASE_URL_API + '/' + this.autosoortData.naamToBeFound, {
                 "method": "GET",
-                "headers": {
-                }
+                "headers": {}
             })
                 .then(response => {
-                    if(response.ok){
-                        return response.json()
+                    if (response.ok) {
+                        return response.json();
                     } else {
                         alert("Server returned " + response.status + " : " + response.statusText);
                     }
@@ -100,9 +100,9 @@ const app = new Vue({
         deleteAllAutosoorten() {
             this.responseAvailable = false;
             this.responseAvailableCreation = false;
-            this.responseAvailableSearch = false
+            this.responseAvailableSearch = false;
 
-            fetch(BASE_URL_API, {"method": "DELETE"})
+            fetch(BASE_URL_API, { "method": "DELETE" })
                 .then(response => {
                     this.result = response;
                     this.responseAvailable = true;
@@ -112,4 +112,6 @@ const app = new Vue({
                 });
         }
     }
-})
+});
+
+app.mount('#main');

@@ -47,7 +47,7 @@
     <element xsi:type="archimate:SystemSoftware" name="Web browser" id="id-5177301631fa4e9d8895a3b6e8d9bd87"/>
     <element xsi:type="archimate:Node" name="PC Verkoop" id="id-ab52618139654da58684bd933b4c2ada"/>
     <element xsi:type="archimate:Device" name="PC Verkoop" id="id-abd6f109aa2b4517977ddd5cc80fd22b"/>
-    <element xsi:type="archimate:SystemSoftware" name="MySQL RDBMS" id="id-11ed7b474cc1488cbac3e0d211a02e29"/>
+    <element xsi:type="archimate:SystemSoftware" name="H2 RDBMS" id="id-11ed7b474cc1488cbac3e0d211a02e29"/>
     <element xsi:type="archimate:Artifact" name="Beerens database" id="id-50d0100e6b0e42a5b52c2b9df1d0add3"/>
   </folder>
   <folder name="Motivation" id="id-8ffc79bdcc724798ab6c5bc7fa7cf87e" type="motivation"/>
